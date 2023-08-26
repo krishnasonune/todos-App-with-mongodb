@@ -1,0 +1,74 @@
+<section>
+    <header>
+        <nav class="navbar navbar-expand-lg  bg-dark bg-body-tertiary" data-bs-theme="dark">
+            <div class="container-fluid">
+              <span class="d-flex">
+                <img src="assets/mongodb.svg" alt="">
+                <h2 style="color: white;">ToDo APP With MongoDB</h2>
+              </span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid d-flex flex-column justify-content-center ">
+        <h1 class="my-3">Add Todo</h1>
+        <form #addTask="ngForm" (ngSubmit)="addTodoTask(addTask)">
+            <div class="mb-3">
+                <label for="basic-url" class="form-label">Title</label>
+                <div class="input-group">
+                  <input type="text" name="title" ngModel class="form-control" aria-describedby="basic-addon3 basic-addon4">
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="basic-url" class="form-label">Priority</label>
+                <select class="input-group  form-select" ngModel name="priority">
+                  <option selected>Select...</option>
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="basic-url" class="form-label">Status</label>
+                <select class="input-group  form-select" ngModel name="status">
+                  <option selected>Select...</option>
+                  <option value="Complete">Complete</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Upcoming">Upcoming</option>
+                </select>
+              </div>
+
+            <button type="submit" class="btn btn-success" [disabled]="!addTask.form.valid">Add</button>
+        </form>
+
+
+        <div *ngFor="let task of todo" class="d-flex justify-content-center" style="width: 100%;">
+            <div class="card" style="width: 25rem; margin: 1rem 0; background-color: cadetblue;">
+                <div class="card-body">
+                  <h5 class="card-title">Title : {{task.title}}</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">status : {{task.status}}</h6>
+                  <p class="card-text">Priority : {{task.priority}}</p>
+                  <p class="card-text">created at : {{task.createdAt}}</p>
+                  <p class="card-text">snoozed : {{task.isSnoozed}}</p>
+                  <span>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          status
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" (click)="updateTaskstatus(task, 'upcoming')">upcoming</a></li>
+                          <li><a class="dropdown-item" (click)="updateTaskstatus(task, 'In Progess')">In Progress</a></li>
+                          <li><a class="dropdown-item" (click)="updateTaskstatus(task, 'Completed')">Completed</a></li>
+                        </ul>
+                      </div>
+                      <button type="button" class="btn btn-secondary mx-2" (click)="updateTask(task)">Snoozed</button>
+                      <button type="button" class="btn btn-danger" (click)="deleteTask(task._id)">Delete</button>
+                  </span>
+                </div>
+              </div>
+        </div>
+    </div>
+    
+</section>

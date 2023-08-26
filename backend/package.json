@@ -1,0 +1,25 @@
+{
+  "name": "todos_with_mongodb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "devStart": "tsc -w & nodemon dist/backend/server/dbserver.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.5.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongodb": "^5.7.0",
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "nodemon": "^3.0.1"
+  }
+}
